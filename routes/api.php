@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\EnderecoController;
 use App\Http\Controllers\CityController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,3 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/cities', [CityController::class, 'getAllCities']);
 Route::post('/import', [CityController::class, 'importCities']);
 Route::post('/cities', [CityController::class, 'store']);
+
+Route::resource('endereco', EnderecoController::class)->except(['update']);
+Route::post('/endereco/{id}', [EnderecoController::class, 'update']);
