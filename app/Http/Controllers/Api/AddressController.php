@@ -5,11 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEnderecoRequest;
 use App\Models\Address;
-use App\Models\Endereco;
 use Exception;
 
 
-class EnderecoController extends Controller
+class AddressController extends Controller
 {
     /**
      * Display a listing of the resource.

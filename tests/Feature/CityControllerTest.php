@@ -18,7 +18,14 @@ class CityControllerTest extends TestCase
      *
      * @return void
      */
-    public function testShouldShowAllCities()
+    public function testShouldShowAllCitiesFromIbgeApi()
+    {
+        $request = $this->call('GET', '/api/listcities');
+
+        $request->assertStatus(200);
+    }
+
+    public function testShoulShowAllCitiesFromMyApi()
     {
         $request = $this->call('GET', '/api/cities');
 

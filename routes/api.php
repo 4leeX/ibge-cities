@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\EnderecoController;
-use App\Http\Controllers\CityController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\AddressController;
+use App\Http\Controllers\Api\CityController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,13 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::get('/cities', [CityController::class, 'getAllCities']);
+Route::get('/cities', [CityController::class, 'getAllCitiesFromApi']);
 Route::post('/import', [CityController::class, 'importCities']);
 Route::post('/cities', [CityController::class, 'store']);
+Route::get('/listcities', [CityController::class, 'getAllCitiesFromIbge']);
 
-Route::resource('endereco', EnderecoController::class)->except(['update']);
-Route::post('/endereco/{id}', [EnderecoController::class, 'update']);
+Route::resource('address', AddressController::class)->except(['update']);
+Route::post('/address/{id}', [AddressController::class, 'update']);

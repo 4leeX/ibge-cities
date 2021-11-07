@@ -1,30 +1,48 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCityRequest;
 use App\Models\City;
 use Exception;
 use GuzzleHttp\Client;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 
 class CityController extends Controller
 {
-    public function getAllCities()
+    public function getAllCitiesFromIbge()
     {
-        $cities = Http::get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/22/municipios');
+        try {
+            $cities = Http::get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/22/municipios');
 
-        return response($cities);
+            return response($cities);
+        } catch (Exception $e) {
+            return response()->json(['msg' => $e->getMessage()], 500);
+        }
+    }
+
+    public function getAllCitiesFromApi()
+    {
+        try {
+            $cities = City::all();
+
+            return response()->json($cities);
+        } catch (Exception $e) {
+            return response()->json(['msg' => $e->getMessage()], 500);
+        }
     }
 
     public function store(StoreCityRequest $request)
     {
-        City::create($request->validated());
+        try {
+            City::create($request->validated());
 
-        return response()->json(['msg' => 'City created successfully.'], 201);
+            return response()->json(['msg' => 'City created successfully.'], 201);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
     public function importCities()
