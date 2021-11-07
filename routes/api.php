@@ -21,8 +21,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/cities', [CityController::class, 'getAllCitiesFromApi']);
 Route::post('/import', [CityController::class, 'importCities']);
-Route::post('/cities', [CityController::class, 'store']);
-Route::get('/listcities', [CityController::class, 'getAllCitiesFromIbge']);
+Route::post('/cities', [CityController::class, 'store']);                    // cria cidades
+Route::get('/listcities', [CityController::class, 'getAllCitiesFromIbge']); // lista cidades da api do ibge
 
-Route::resource('address', AddressController::class)->except(['update']);
+Route::resource('address', AddressController::class)->except(['update', 'show']);
 Route::post('/address/{id}', [AddressController::class, 'update']);
