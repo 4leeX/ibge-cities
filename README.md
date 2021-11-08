@@ -12,8 +12,12 @@
 Feitas em Requests
 
 ## DB
-MySQL
+* Crie sua database e no arquivo '.env', altere com seus dados: DB_DATABASE = ExemploDB, DB_USERNAME = ExemploRoot .
+* Criação do banco de dados:
+    execute o camando: php artisan migrate, ou php artisan migrate --seed (para criar tabelas populadas).
+
+* MySQL
 
 ## Testes
-Sqlite
+* Sqlite
 
